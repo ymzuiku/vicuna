@@ -1,11 +1,19 @@
+// fix jsx
+
+var id = 0;
 function JSX(fn, ...args) {
-  var props = args[0] || {};
-  var len = args.length - 1;
-  var childArray = Array(len);
+  const props = args[0] || {};
+  props._index = 0;
+  const len = args.length - 1;
+  const childArray = Array(len);
   for (let i = 0; i < len; i++) {
     childArray[i] = args[i + 1];
+    childArray[i]._index = i;
+    if (childArray[i].id === undefined) {
+      id++
+      childArray[i].id = id + '';
+    }
   }
-  // if (Object.freeze) Object.freeze(childArray);
   props.children = childArray;
   return { fn, props };
 }
@@ -15,3 +23,5 @@ try {
 } catch (error) {}
 
 export default JSX;
+
+// if (Object.freeze) Object.freeze(childArray);

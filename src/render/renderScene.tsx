@@ -1,5 +1,5 @@
 import engine from '../engine';
-import { renderTree, setStates } from './lifeCycle';
+import { renderTree } from './createTree';
 import Component from './Component';
 import JSX from './JSX';
 

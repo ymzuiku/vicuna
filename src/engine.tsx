@@ -1,3 +1,5 @@
+/// <reference path="../bin/libs/LayaAir.d.ts"/>
+
 import '../bin/libs/laya.core.js'
 import '../bin/libs/laya.webgl.js'
 import '../bin/libs/laya.ani.js'
