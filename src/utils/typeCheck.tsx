@@ -1,11 +1,11 @@
-const strOf = Object.prototype.toString;
+const str = Object.prototype.toString;
 
 function isArray(v) {
-  return strOf.call(v) === '[object Array]';
+  return str.call(v) === '[object Array]';
 }
 
 function isObject(v) {
-  return strOf.call(v) === '[object Object]';
+  return str.call(v) === '[object Object]';
 }
 
 function isString(v) {
@@ -13,11 +13,11 @@ function isString(v) {
 }
 
 function isFunction(v) {
-  return strOf.call(v) === '[object Function]';
+  return str.call(v) === '[object Function]';
 }
 
 function isUndefined(v) {
-  return strOf.call(v) === '[object Undefined]';
+  return str.call(v) === '[object Undefined]';
 }
 
 function isNumber(v) {
@@ -25,7 +25,7 @@ function isNumber(v) {
 }
 
 function isNull(v) {
-  return strOf.call(v) === '[object Null]';
+  return str.call(v) === '[object Null]';
 }
 
 export default {

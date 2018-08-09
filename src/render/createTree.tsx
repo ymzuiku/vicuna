@@ -4,41 +4,42 @@ import memoize from '../utils/memoize';
 
 export let frameLoopStateList = [];
 
-export const renderTree = memoize(function(jsx: any, father: engine.Sprite) {
+export const renderTree = memoize(function(
+  jsx: any,
+  father: engine.Sprite,
+  name?: string,
+) {
   const { fn, props } = jsx;
   if (fn && props) {
-    let comp = new fn(props);
-    if (comp.ref) {
-      comp.ref.name = comp.props.id;
-      father.addChildAt(comp.ref, father.numChildren);
+    const comp = new fn(props);
+    if (comp.node) {
+      comp.node.name = comp.node.name || name;
+      father.addChildAt(comp.node, father.numChildren);
       comp.componentWillMount();
       lifeCycle(comp);
     } else {
-      // 如果是函数
-      let subComp = comp.fn(comp.props);
-      console.log(subComp.props._index);
-      subComp.ref.name = subComp.props.id;
-      father.addChildAt(subComp.ref, father.numChildren);
+      const subComp = comp.fn(comp.props);
+      subComp.node.name = subComp.node.name || name;
+      father.addChildAt(subComp.node, father.numChildren);
       lifeCycle(subComp);
     }
   }
 }) as Function;
 
 export const lifeCycle = memoize(function(comp: Component) {
+  if (comp.isDestroy === true) return;
   if (comp.render) {
-    comp.componentWillReceiveProps(comp.props);
-    //渲染
+    comp.props = comp.componentWillReceiveProps(comp.props);
     const compTree = comp.render();
-    let len = comp.props.children.length;
+    const len = comp.props.children.length;
     if (len === 0) {
-      renderTree(compTree, comp.ref);
+      renderTree(compTree, comp.node);
     } else {
       for (let i = 0; i < len; i++) {
-        renderTree(comp.props.children[i], comp.ref);
+        renderTree(comp.props.children[i], comp.node);
       }
     }
     comp.componentDidMount();
-    comp._checkFrameLoop();
   }
 }) as Function;
 

@@ -1,6 +1,5 @@
 // fix jsx
 
-var id = 0;
 function JSX(fn, ...args) {
   const props = args[0] || {};
   props._index = 0;
@@ -9,10 +8,6 @@ function JSX(fn, ...args) {
   for (let i = 0; i < len; i++) {
     childArray[i] = args[i + 1];
     childArray[i]._index = i;
-    if (childArray[i].id === undefined) {
-      id++
-      childArray[i].id = id + '';
-    }
   }
   props.children = childArray;
   return { fn, props };

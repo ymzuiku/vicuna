@@ -1,114 +1,85 @@
-import isType from '../utils/isType';
+import typeCheck from '../utils/typeCheck';
 import engine from '../engine';
 import IDiff from '../interfaces/IDiff';
 import ISprite from '../interfaces/ISprite';
+import { renderTree } from './createTree';
 
 export interface IComponent extends IDiff {
-  style?: ISprite;
-}
-
-// function updateTreeStyle(ref: engine.Sprite, treeData: any) {
-//   console.log(treeData);
-//   const root = ref.getChildAt(0);
-//   for (let i = 0; i < root.numChildren; i++) {
-//     if (
-//       treeData.props.children[i].props &&
-//       treeData.props.children[i].props.style
-//     ) {
-//       const node = root.getChildByName(treeData.props.id);
-//       for (let k in treeData.props.children[i].props.style) {
-//         node[k] = treeData.props.children[i].props.style[k];
-//       }
-//     }
-//   }
-// }
-
-
-function useIndexFindeRef(index, tree, target){
-  for (let i = 0; i < tree.props.length; i++) {
-   
-  }
+  node?: ISprite;
 }
 
 class Component {
   static defaultProps: IComponent;
-  ref: engine.Sprite;
+  node: engine.Sprite;
   superView: engine.Sprite;
   props: IComponent;
-  state: Object;
-  _nextState: Object;
-  _nextProps: Object;
-  _updateMaps: Object = {};
+  state: Object = {};
+  isDestroy = false;
+  _isFrameLooping: boolean = false;
+  _isTimeLooping: boolean = false;
   constructor(props: IComponent, type: any = engine.Sprite) {
     this.props = { ...Component.defaultProps, ...props };
-    this.ref = new type();
-    if (this.props.ref) this.props.ref(this.ref);
-    if (this.props.updater !== undefined) {
-      this.props.updater._updateMaps[this.props.id] = this.ref;
+    this.node = new type();
+    if (this.props.ref) this.props.ref(this);
+  }
+  frameOnce(loopFn) {
+    engine.timer.frameOnce(2, null, loopFn);
+  }
+  startFrameLoop(frame = 2) {
+    if (this._isFrameLooping === false) {
+      this._isFrameLooping = true;
+      engine.timer.frameLoop(frame, this, this.frameLoop);
     }
   }
-  _lifeCycle() {
-    if (!this._nextState && !this._nextProps) return;
-    this._nextProps = this.componentWillReceiveProps(this._nextState);
-    if (this.shouldComponentUpdate(this._nextState, this._nextProps) === false)
-      return;
-    this.state = { ...this.state, ...this._nextState };
-    this.props = { ...this.props, ...this._nextProps } as IComponent;
-    // updateTreeStyle(this.ref, this.render());
-    this._reRender();
-    this.componentDidUpdate();
-    this._nextState = undefined;
-  }
-  _reRender() {
-    const tree = this.render();
-    for (let k in this._updateMaps) {
-      const ref = this._updateMaps[k].ref;
-      const index = this._updateMaps[k].index
+  stopFrameLoop(cb?: Function) {
+    if (this._isFrameLooping === true) {
+      this._isFrameLooping = false;
+      engine.timer.clear(this, this.frameLoop);
     }
   }
-  _checkFrameLoop() {
-    if (this.frameLoop()) {
-      this.ref.frameLoop(2, this, this.frameLoop);
+  frameLoop(): any {}
+  startTimeLoop(frame = 2) {
+    if (this._isTimeLooping === false) {
+      this._isTimeLooping = true;
+      engine.timer.loop(frame, this, this.timeLoop);
     }
   }
-  update() {
-    this.ref.frameOnce(0, this, this._lifeCycle);
-  }
-  forceUpdate() {
-    // updateTreeStyle(this.ref, this.render());
-  }
-  setState(state: any) {
-    if (isType.isFunction(state)) {
-      this._nextState = {
-        ...this.state,
-        ...this._nextState,
-        ...state(this.state),
-      };
-    } else {
-      this._nextState = { ...this.state, ...this._nextState, ...state };
+  stopTimeLoop(cb?: Function) {
+    if (this._isTimeLooping === true) {
+      this._isTimeLooping = false;
+      engine.timer.clear(this, this.timeLoop);
     }
-    this.ref.frameOnce(0, this, this._lifeCycle);
+  }
+  timeLoop(): any {}
+  destroy() {
+    if (this.isDestroy) return;
+    if (this._isFrameLooping === true) {
+      engine.timer.clear(this, this.frameLoop);
+      this._isFrameLooping = false;
+    }
+    if (this._isTimeLooping === true) {
+      engine.timer.clear(this, this.timeLoop);
+      this._isTimeLooping = false;
+    }
+    this.componentWillUnmount();
+    this.node.destroy();
+    this.isDestroy = true;
   }
   componentWillMount() {}
-  componentDidMount() {}
-  frameLoop() {
-    return false;
-  }
-  shouldComponentUpdate(nextState, nextProps) {
-    return true;
-  }
-  componentDidUpdate() {}
-  componentWillUnmount() {
-    this.ref.destroy();
-  }
   componentWillReceiveProps(nextProps) {
     return nextProps;
   }
+  componentDidMount() {}
+  componentWillUnmount() {}
+  addComponent(target: Component, name?: string) {
+    renderTree(target, this.node, name);
+  }
   render(): any {
-    const { children, style } = this.props;
-    if (style) {
-      for (let k in style) {
-        this.ref[k] = style[k];
+    if (this.isDestroy) return;
+    const { children, node } = this.props;
+    if (node) {
+      for (let k in node) {
+        this.node[k] = node[k];
       }
     }
     return this;

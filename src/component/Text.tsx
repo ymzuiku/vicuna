@@ -5,12 +5,12 @@ import ITextGL from '../interfaces/IText';
 
 interface IText extends IDiff {
   bgColor?: string;
-  style?: ITextGL;
+  node?: ITextGL;
 }
 
 class Text extends Component {
   static defaultProps: IText;
-  ref: engine.Text;
+  node: engine.Text;
   props: IText;
   constructor(props: IText) {
     super(props, engine.Text);

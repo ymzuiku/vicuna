@@ -7,6 +7,7 @@ function initCreator(
   RootComponent,
   isShowStat,
   versionFile,
+  isAntialias,
   iw,
   ih,
   scaleMode,
@@ -25,12 +26,14 @@ function initCreator(
       callback();
     }
   }
+  Config.isAntialias = isAntialias === undefined? true : isAntialias;
   engine.init(iw, ih, engine.WebGL);
   engine.stage.scaleMode = scaleMode;
   engine.stage.screenMode = screenMode;
   engine.stage.bgColor = '#f4f4f5';
   engine.stage.frameRate = frameRate;
   engine.stage.destroyChildren();
+  // Config.isAntialias = true
   if (isShowStat) {
     engine.Stat.show(30, 30);
   }
@@ -50,12 +53,14 @@ function initVerticalScene(
   RootComponent,
   isShowStat?,
   versionFile?,
+  isAntialias?,
   callback?,
 ) {
   initCreator(
     RootComponent,
     isShowStat,
     versionFile,
+    isAntialias,
     750,
     1334,
     engine.Stage.SCALE_FIXED_WIDTH,
@@ -69,12 +74,14 @@ function initHorizontalScene(
   RootComponent,
   isShowStat?,
   versionFile?,
+  isAntialias?,
   callback?,
 ) {
   initCreator(
     RootComponent,
     isShowStat,
     versionFile,
+    isAntialias,
     1334,
     750,
     engine.Stage.SCALE_FIXED_HEIGHT,
@@ -84,7 +91,7 @@ function initHorizontalScene(
   );
 }
 
-function initDesktopScene(RootComponent, isShowStat?, versionFile?, callback?) {
+function initDesktopScene(RootComponent, isShowStat?, versionFile?, isAntialias?, callback?) {
   let iw = 1080;
   let ih = 1920;
   if (window) {
@@ -95,6 +102,7 @@ function initDesktopScene(RootComponent, isShowStat?, versionFile?, callback?) {
     RootComponent,
     isShowStat,
     versionFile,
+    isAntialias,
     iw,
     ih,
     engine.Stage.SCALE_NOSCALE,
