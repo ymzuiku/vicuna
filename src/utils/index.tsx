@@ -4,5 +4,6 @@ import rxExtra from './rxExtra';
 import tryFn from './tryFn';
 import isType from './isType';
 import memoize from './memoize';
+import uuid from './uuid';
 
-export { device, fullPage, rxExtra, tryFn, isType, memoize };
+export { uuid, device, fullPage, rxExtra, tryFn, isType, memoize };
