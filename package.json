@@ -2,7 +2,7 @@
   "name": "vicuna",
   "version": "0.0.1",
   "description": "",
-  "main": "lib/index.tsx",
+  "main": "src",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,9 +16,5 @@
   "bugs": {
     "url": "https://github.com/ymzuiku/vicuna/issues"
   },
-  "homepage": "https://github.com/ymzuiku/vicuna#readme",
-  "dependencies": {
-    "@types/pixi.js": "^4.8.0",
-    "pixi.js": "^4.8.1"
-  }
+  "homepage": "https://github.com/ymzuiku/vicuna#readme"
 }

@@ -1,4 +1,7 @@
 **/ignores
+**/real-client
+**/real-server
+**/real-*
 **/.no-git
 **/.meteor/local
 **/.vscode
