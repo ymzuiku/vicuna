@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/ymzuiku/vicuna/issues"
   },
-  "homepage": "https://github.com/ymzuiku/vicuna#readme"
+  "homepage": "https://github.com/ymzuiku/vicuna#readme",
+  "dependencies": {
+    "fingerprintjs2": "^1.8.1"
+  }
 }
