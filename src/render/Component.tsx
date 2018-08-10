@@ -1,35 +1,7 @@
 import engine from '../engine';
-import IDiff from '../interfaces/IDiff';
 import IComponent from '../interfaces/IComponent';
 import { renderTree } from './createTree';
-import * as nodeExtra from '../nodeExtra';
-
-const events = {
-  onClick: 'click',
-  onTouchStart: 'touchstart',
-  onTouchMove: 'touchmove',
-  onTouchEnd: 'touchend',
-  onTouchLeave: 'touchleave',
-  onTouchCancel: 'touchcancel',
-  onDragStart: 'ondragstart',
-  onDragEnter: 'ondragenter',
-  onDragOver: 'ondragover',
-  onDragend: 'ondragend',
-  onDrop: 'ondrop',
-};
-const eventOnces = {
-  onClickOnce: 'click',
-  onTouchStartOnce: 'touchstart',
-  onTouchMoveOnce: 'touchmove',
-  onTouchEndOnce: 'touchend',
-  onTouchLeaveOnce: 'touchleave',
-  onTouchCancelOnce: 'touchcancel',
-  onDragStartOnce: 'ondragstart',
-  onDragEnterOnce: 'ondragenter',
-  onDragOverOnce: 'ondragover',
-  onDragendOnce: 'ondragend',
-  onDropOnce: 'ondrop',
-};
+import { eventTypes } from '../interfaces/IEvent';
 
 class Component {
   static defaultProps: IComponent;
@@ -45,17 +17,22 @@ class Component {
     this.node = new type();
     this.node.name = this.props.name;
     if (this.props.ref) this.props.ref(this);
-    if (this.props.eventEnable) this._checkEvent();
-  }
-  _checkEvent() {
-    for (const k in events) {
-      if (this.props[k]) {
-        this.node.on(events[k], this, this.props[k]);
+    if (this.props.on) {
+      for (const k in this.props.on) {
+        this.node.on(eventTypes[k], null, this.props.on[k], [
+          this.node,
+          this,
+          eventTypes[k],
+        ]);
       }
     }
-    for (const k in eventOnces) {
-      if (this.props[k]) {
-        this.node.once(events[k], this, this.props[k]);
+    if (this.props.once) {
+      for (const k in this.props.once) {
+        this.node.once(eventTypes[k], null, this.props.once[k], [
+          this.node,
+          this,
+          eventTypes[k],
+        ]);
       }
     }
   }
