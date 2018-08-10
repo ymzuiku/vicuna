@@ -24,8 +24,16 @@ class List extends Component {
     this.node.array = this.props.data;
     this.node.repeatX = this.props.repeatX || 1;
     this.node.repeatY = this.props.repeatY || 6;
-    this.node.vScrollBarSkin = this.props.vScrollBarSkin;
-    this.node.hScrollBarSkin = this.props.hScrollBarSkin;
+    if (this.props.repeatX > 1) {
+      this.node.hScrollBarSkin = this.props.hScrollBarSkin || '';
+    } else {
+      this.node.hScrollBarSkin = this.props.hScrollBarSkin;
+    }
+    if (this.props.repeatY > 1) {
+      this.node.vScrollBarSkin = this.props.vScrollBarSkin || '';
+    } else {
+      this.node.vScrollBarSkin = this.props.vScrollBarSkin;
+    }
     if (this.props.onSelect) {
       this.node.selectEnable = true;
       this.node.selectHandler = new engine.Handler(null, this.props.onSelect, [
@@ -36,6 +44,7 @@ class List extends Component {
     if (this.props.onScroll) {
       this.node.renderHandler = new engine.Handler(null, this.props.onScroll);
     }
+    console.log(this.node);
     this.node.itemRender = this.item;
   }
 }
