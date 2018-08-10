@@ -1,12 +1,35 @@
-import typeCheck from '../utils/typeCheck';
 import engine from '../engine';
 import IDiff from '../interfaces/IDiff';
-import ISprite from '../interfaces/ISprite';
+import IComponent from '../interfaces/IComponent';
 import { renderTree } from './createTree';
+import * as nodeExtra from '../nodeExtra';
 
-export interface IComponent extends IDiff {
-  node?: ISprite;
-}
+const events = {
+  onClick: 'click',
+  onTouchStart: 'touchstart',
+  onTouchMove: 'touchmove',
+  onTouchEnd: 'touchend',
+  onTouchLeave: 'touchleave',
+  onTouchCancel: 'touchcancel',
+  onDragStart: 'ondragstart',
+  onDragEnter: 'ondragenter',
+  onDragOver: 'ondragover',
+  onDragend: 'ondragend',
+  onDrop: 'ondrop',
+};
+const eventOnces = {
+  onClickOnce: 'click',
+  onTouchStartOnce: 'touchstart',
+  onTouchMoveOnce: 'touchmove',
+  onTouchEndOnce: 'touchend',
+  onTouchLeaveOnce: 'touchleave',
+  onTouchCancelOnce: 'touchcancel',
+  onDragStartOnce: 'ondragstart',
+  onDragEnterOnce: 'ondragenter',
+  onDragOverOnce: 'ondragover',
+  onDragendOnce: 'ondragend',
+  onDropOnce: 'ondrop',
+};
 
 class Component {
   static defaultProps: IComponent;
@@ -20,7 +43,21 @@ class Component {
   constructor(props: IComponent, type: any = engine.Sprite) {
     this.props = { ...Component.defaultProps, ...props };
     this.node = new type();
+    this.node.name = this.props.name;
     if (this.props.ref) this.props.ref(this);
+    if (this.props.eventEnable) this._checkEvent();
+  }
+  _checkEvent() {
+    for (const k in events) {
+      if (this.props[k]) {
+        this.node.on(events[k], this, this.props[k]);
+      }
+    }
+    for (const k in eventOnces) {
+      if (this.props[k]) {
+        this.node.once(events[k], this, this.props[k]);
+      }
+    }
   }
   frameOnce(loopFn) {
     engine.timer.frameOnce(2, null, loopFn);
@@ -76,12 +113,7 @@ class Component {
   }
   render(): any {
     if (this.isDestroy) return;
-    const { children, node } = this.props;
-    if (node) {
-      for (let k in node) {
-        this.node[k] = node[k];
-      }
-    }
+    if (this.props.fix) this.props.fix(this.node, this);
     return this;
   }
 }

@@ -34,16 +34,16 @@ export default interface ISprite extends INode {
    * @default null
    */
   viewport?: engine.Rectangle;
-  createConchModel?(): any;
+  // createConchModel?(): any;
   /**
    * <p>指定是否对使用了 scrollRect 的显示对象进行优化处理。默认为false(不优化)。</p>
    * <p>当值为ture时：将对此对象使用了scrollRect 设定的显示区域以外的显示内容不进行渲染，以提高性能(如果子对象有旋转缩放或者中心点偏移，则显示筛选会不精确)。</p>
    */
   optimizeScrollRect?: boolean;
   /**@inheritDoc */
-  destroy?(destroyChild?: boolean): void;
+  // destroy?(destroyChild?: boolean): void;
   /**根据zOrder进行重新排序。*/
-  updateZOrder?(): void;
+  // updateZOrder?(): void;
   /**
    * 指定显示对象是否缓存为静态图像。功能同cacheAs的normal模式。建议优先使用cacheAs代替。
    */
@@ -68,7 +68,7 @@ export default interface ISprite extends INode {
    */
   staticCache?: boolean;
   /**在设置cacheAs的情况下，调用此方法会重新刷新缓存。*/
-  reCache?(): void;
+  // reCache?(): void;
   /**表示显示对象相对于父容器的水平方向坐标值。*/
   x?: number;
   /**表示显示对象相对于父容器的垂直方向坐标值。*/
@@ -90,19 +90,19 @@ export default interface ISprite extends INode {
    * <p><b>注意：</b> <code>setBounds</code> 与 <code>getBounds</code> 并非对应相等关系， <code>getBounds</code> 获取的是本对象在父容器坐标系下的边界范围，通过设置 <code>setBounds</code> 会影响 <code>getBounds</code> 的结果。</p>
    * @param	bound bounds矩形区域
    */
-  setBounds?(bound: engine.Rectangle): void;
+  // setBounds?(bound: engine.Rectangle): void;
   /**
    * <p>获取本对象在父容器坐标系的矩形显示区域。</p>
    * <p><b>注意：</b> 1.计算量较大，尽量少用，如果需要频繁使用，可以通过手动设置 <code>setBounds</code> 来缓存自身边界信息，从而避免比较消耗性能的计算。2. <code>setBounds</code> 与 <code>getBounds</code> 并非对应相等关系， <code>getBounds</code> 获取的是本对象在父容器坐标系下的边界范围，通过设置 <code>setBounds</code> 会影响 <code>getBounds</code> 的结果。</p>
    * @return 矩形区域。
    */
-  getBounds?(): engine.Rectangle;
+  // getBounds?(): engine.Rectangle;
   /**
    * 获取对象在自身坐标系的边界范围。与 <code>setBounds</code> 对应。
    * <p><b>注意：</b>计算量较大，尽量少用，如果需要频繁使用，可以提前手动设置 <code>setBounds</code> 来缓存自身边界信息，从而避免比较消耗性能的计算。</p>
    * @return 矩形区域。
    */
-  getSelfBounds?(): engine.Rectangle;
+  // getSelfBounds?(): engine.Rectangle;
   /**
    * @private
    * 获取本对象在父容器坐标系的显示区域多边形顶点列表。
@@ -110,32 +110,32 @@ export default interface ISprite extends INode {
    * @param ifRotate	（可选）之前的对象链中是否有旋转。
    * @return 顶点列表。结构：[x1,y1,x2,y2,x3,y3,...]。
    */
-  _boundPointsToParent?(ifRotate?: boolean): Array<any>;
+  // _boundPointsToParent?(ifRotate?: boolean): Array<any>;
   /**
    * 返回此实例中的绘图对象（ <code>Graphics</code> ）的显示区域，不包括子对象。
    * @param realSize	（可选）使用图片的真实大小，默认为false
    * @return 一个 Rectangle 对象，表示获取到的显示区域。
    */
-  getGraphicBounds?(realSize?: boolean): engine.Rectangle;
+  // getGraphicBounds?(realSize?: boolean): engine.Rectangle;
   /**
    * @private
    * 获取自己坐标系的显示区域多边形顶点列表
    * @param ifRotate	（可选）当前的显示对象链是否由旋转
    * @return 顶点列表。结构：[x1,y1,x2,y2,x3,y3,...]。
    */
-  _getBoundPointsM?(ifRotate?: boolean): Array<any>;
+  // _getBoundPointsM?(ifRotate?: boolean): Array<any>;
   /**
    * @private
    * 获取样式。
    * @return  样式 Style 。
    */
-  getStyle?(): engine.Style;
+  // getStyle?(): engine.Style;
   /**
    * @private
    * 设置样式。
    * @param	value 样式。
    */
-  setStyle?(value: engine.Style): void;
+  // setStyle?(value: engine.Style): void;
   /**X轴缩放值，默认值为1。设置为负数，可以实现水平反转效果，比如scaleX=-1。*/
   scaleX?: number;
   /**Y轴缩放值，默认值为1。设置为负数，可以实现垂直反转效果，比如scaleX=-1。*/
@@ -178,7 +178,7 @@ export default interface ISprite extends INode {
    * @param 	speedMode	（可选）是否极速模式，正常是调用this.x=value进行赋值，极速模式直接调用内部函数处理，如果未重写x,y属性，建议设置为急速模式性能更高。
    * @return	返回对象本身。
    */
-  pos?(x: number, y: number, speedMode?: boolean): engine.Sprite;
+  // pos?(x: number, y: number, speedMode?: boolean): engine.Sprite;
   /**
    * <p>设置轴心点。相当于分别设置pivotX和pivotY属性。</p>
    * <p>因为返回值为Sprite对象本身，所以可以使用如下语法：spr.pivot(...).pos(...);</p>
@@ -186,7 +186,7 @@ export default interface ISprite extends INode {
    * @param	y Y轴心点。
    * @return	返回对象本身。
    */
-  pivot?(x: number, y: number): engine.Sprite;
+  // pivot?(x: number, y: number): engine.Sprite;
   /**
    * <p>设置宽高。相当于分别设置width和height属性。</p>
    * <p>因为返回值为Sprite对象本身，所以可以使用如下语法：spr.size(...).pos(...);</p>
@@ -194,7 +194,7 @@ export default interface ISprite extends INode {
    * @param	hegiht 高度值。
    * @return	返回对象本身。
    */
-  size?(width: number, height: number): engine.Sprite;
+  // size?(width: number, height: number): engine.Sprite;
   /**
    * <p>设置缩放。相当于分别设置scaleX和scaleY属性。</p>
    * <p>因为返回值为Sprite对象本身，所以可以使用如下语法：spr.scale(...).pos(...);</p>
@@ -203,7 +203,7 @@ export default interface ISprite extends INode {
    * @param 	speedMode	（可选）是否极速模式，正常是调用this.scaleX=value进行赋值，极速模式直接调用内部函数处理，如果未重写scaleX,scaleY属性，建议设置为急速模式性能更高。
    * @return	返回对象本身。
    */
-  scale?(scaleX: number, scaleY: number, speedMode?: boolean): engine.Sprite;
+  // scale?(scaleX: number, scaleY: number, speedMode?: boolean): engine.Sprite;
   /**
    * <p>设置倾斜角度。相当于分别设置skewX和skewY属性。</p>
    * <p>因为返回值为Sprite对象本身，所以可以使用如下语法：spr.skew(...).pos(...);</p>
@@ -211,14 +211,14 @@ export default interface ISprite extends INode {
    * @param	skewY 垂直倾斜角度。
    * @return	返回对象本身
    */
-  skew?(skewX: number, skewY: number): engine.Sprite;
+  // skew?(skewX: number, skewY: number): engine.Sprite;
   /**
    * 更新、呈现显示对象。由系统调用。
    * @param	context 渲染的上下文引用。
    * @param	x X轴坐标。
    * @param	y Y轴坐标。
    */
-  render?(context: engine.RenderContext, x: number, y: number): void;
+  // render?(context: engine.RenderContext, x: number, y: number): void;
   /**
    * <p>绘制 当前<code>Sprite</code> 到 <code>Canvas</code> 上，并返回一个HtmlCanvas。</p>
    * <p>绘制的结果可以当作图片源，再次绘制到其他Sprite里面，示例：</p>
@@ -243,12 +243,12 @@ export default interface ISprite extends INode {
    * @param	y 绘制的 Y 轴偏移量。
    * @return  HTMLCanvas 对象。
    */
-  drawToCanvas?(
-    canvasWidth: number,
-    canvasHeight: number,
-    offsetX: number,
-    offsetY: number,
-  ): engine.HTMLCanvas;
+  // drawToCanvas?(
+  //   canvasWidth: number,
+  //   canvasHeight: number,
+  //   offsetX: number,
+  //   offsetY: number,
+  // ): engine.HTMLCanvas;
   /**
    * <p>自定义更新、呈现显示对象。一般用来扩展渲染模式，请合理使用，可能会导致在加速器上无法渲染。</p>
    * <p><b>注意</b>不要在此函数内增加或删除树节点，否则会对树节点遍历造成影响。</p>
@@ -256,7 +256,7 @@ export default interface ISprite extends INode {
    * @param	x X轴坐标。
    * @param	y Y轴坐标。
    */
-  customRender?(context: engine.RenderContext, x: number, y: number): void;
+  // customRender?(context: engine.RenderContext, x: number, y: number): void;
   /**
    * @private
    * 应用滤镜。
@@ -269,26 +269,26 @@ export default interface ISprite extends INode {
    * @param createNewPoint	（可选）是否创建一个新的Point对象作为返回值，默认为false，使用输入的point对象返回，减少对象创建开销。
    * @return 转换后的坐标的点。
    */
-  localToGlobal?(point: engine.Point, createNewPoint?: boolean): engine.Point;
+  // localToGlobal?(point: engine.Point, createNewPoint?: boolean): engine.Point;
   /**
    * 把stage的全局坐标转换为本地坐标。
    * @param point				全局坐标点。
    * @param createNewPoint	（可选）是否创建一个新的Point对象作为返回值，默认为false，使用输入的point对象返回，减少对象创建开销。
    * @return 转换后的坐标的点。
    */
-  globalToLocal?(point: engine.Point, createNewPoint?: boolean): engine.Point;
+  // globalToLocal?(point: engine.Point, createNewPoint?: boolean): engine.Point;
   /**
    * 将本地坐标系坐标转转换到父容器坐标系。
    * @param point 本地坐标点。
    * @return  转换后的点。
    */
-  toParentPoint?(point: engine.Point): engine.Point;
+  // toParentPoint?(point: engine.Point): engine.Point;
   /**
    * 将父容器坐标系坐标转换到本地坐标系。
    * @param point 父容器坐标点。
    * @return  转换后的点。
    */
-  fromParentPoint?(point: engine.Point): engine.Point;
+  // fromParentPoint?(point: engine.Point): engine.Point;
   /**
    * <p>增加事件侦听器，以使侦听器能够接收事件通知。</p>
    * <p>如果侦听鼠标事件，则会自动设置自己和父亲节点的属性 mouseEnabled 的值为 true(如果父节点mouseEnabled=false，则停止设置父节点mouseEnabled属性)。</p>
@@ -298,12 +298,12 @@ export default interface ISprite extends INode {
    * @param args		（可选）事件侦听函数的回调参数。
    * @return 此 EventDispatcher 对象。
    */
-  on?(
-    type: string,
-    caller: any,
-    listener: Function,
-    args?: Array<any>,
-  ): engine.EventDispatcher;
+  // on?(
+  //   type: string,
+  //   caller: any,
+  //   listener: Function,
+  //   args?: Array<any>,
+  // ): engine.EventDispatcher;
   /**
    * <p>增加事件侦听器，以使侦听器能够接收事件通知，此侦听事件响应一次后则自动移除侦听。</p>
    * <p>如果侦听鼠标事件，则会自动设置自己和父亲节点的属性 mouseEnabled 的值为 true(如果父节点mouseEnabled=false，则停止设置父节点mouseEnabled属性)。</p>
@@ -313,13 +313,13 @@ export default interface ISprite extends INode {
    * @param args		（可选）事件侦听函数的回调参数。
    * @return 此 EventDispatcher 对象。
    */
-  once?(
-    type: string,
-    caller: any,
-    listener: Function,
-    args?: Array<any>,
-  ): engine.EventDispatcher;
-  parent?: engine.Node;
+  // once?(
+  //   type: string,
+  //   caller: any,
+  //   listener: Function,
+  //   args?: Array<any>,
+  // ): engine.EventDispatcher;
+  // parent?: engine.Node;
   /**
    * <p>加载并显示一个图片。功能等同于graphics.loadImage方法。支持异步加载。</p>
    * <p>注意：多次调用loadImage绘制不同的图片，会同时显示。</p>
@@ -331,24 +331,24 @@ export default interface ISprite extends INode {
    * @param complete	（可选）加载完成回调。
    * @return	返回精灵对象本身。
    */
-  loadImage?(
-    url: string,
-    x?: number,
-    y?: number,
-    width?: number,
-    height?: number,
-    complete?: engine.Handler,
-  ): engine.Sprite;
+  // loadImage?(
+  //   url: string,
+  //   x?: number,
+  //   y?: number,
+  //   width?: number,
+  //   height?: number,
+  //   complete?: engine.Handler,
+  // ): engine.Sprite;
   /**
    * 根据图片地址创建一个新的 <code>Sprite</code> 对象用于加载并显示此图片。
    * @param	url 图片地址。
    * @return	返回新的 <code>Sprite</code> 对象。
    */
-  fromImage?(url: string): engine.Sprite;
+  // fromImage?(url: string): engine.Sprite;
   /**cacheAs后，设置自己和父对象缓存失效。*/
-  repaint?(): void;
+  // repaint?(): void;
   /**cacheAs时，设置所有父对象缓存失效。 */
-  parentRepaint?(): void;
+  // parentRepaint?(): void;
   /**对舞台 <code>stage</code> 的引用。*/
   readonly stage?: engine.Stage;
   /**
@@ -376,26 +376,26 @@ export default interface ISprite extends INode {
    * @param disableMouseEvent	（可选）禁用其他对象的鼠标检测，默认为false，设置为true能提高性能。
    * @param ratio				（可选）惯性阻尼系数，影响惯性力度和时长。
    */
-  startDrag?(
-    area?: engine.Rectangle,
-    hasInertia?: boolean,
-    elasticDistance?: number,
-    elasticBackTime?: number,
-    data?: any,
-    disableMouseEvent?: boolean,
-    ratio?: number,
-  ): void;
+  // startDrag?(
+  //   area?: engine.Rectangle,
+  //   hasInertia?: boolean,
+  //   elasticDistance?: number,
+  //   elasticBackTime?: number,
+  //   data?: any,
+  //   disableMouseEvent?: boolean,
+  //   ratio?: number,
+  // ): void;
   /**停止拖动此对象。*/
-  stopDrag?(): void;
+  // stopDrag?(): void;
   /**
    * 检测某个点是否在此对象内。
    * @param	x 全局x坐标。
    * @param	y 全局y坐标。
    * @return  表示是否在对象内。
    */
-  hitTestPoint?(x: number, y: number): boolean;
+  // hitTestPoint?(x: number, y: number): boolean;
   /**获得相对于本对象上的鼠标坐标信息。*/
-  getMousePoint?(): engine.Point;
+  // getMousePoint?(): engine.Point;
   /**
    * 获得相对于stage的全局X轴缩放值（会叠加父亲节点的缩放值）。
    */
@@ -415,5 +415,5 @@ export default interface ISprite extends INode {
   /**z排序，更改此值，则会按照值的大小对同一容器的所有对象重新排序。值越大，越靠上。默认为0，则根据添加顺序排序。*/
   zOrder?: number;
   /**设置一个Texture实例，并显示此图片（如果之前有其他绘制，则会被清除掉）。等同于graphics.clear();graphics.drawTexture()*/
-  texture?: engine.Texture;
+  // texture?: engine.Texture;
 }

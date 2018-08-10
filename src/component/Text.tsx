@@ -1,11 +1,9 @@
 import Component from '../render/Component';
 import engine from '../engine';
-import IDiff from '../interfaces/IDiff';
-import ITextGL from '../interfaces/IText';
+import IComponent from '../interfaces/IComponent';
 
-interface IText extends IDiff {
-  bgColor?: string;
-  node?: ITextGL;
+interface IText extends IComponent {
+  fix?: (node: engine.Text, target: Text) => void;
 }
 
 class Text extends Component {
