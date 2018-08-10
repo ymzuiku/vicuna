@@ -1,5 +1,5 @@
 import engine from '../engine';
-import { renderTree } from './createTree';
+import createTree from './createTree';
 import Component from './Component';
 import JSX from './JSX';
 
@@ -18,7 +18,7 @@ function initCreator(
   function createCallback() {
     if (RootComponent) {
       console.time('renderAll');
-      renderTree(<RootComponent />, engine.stage);
+      createTree(<RootComponent />, engine.stage);
       console.timeEnd('renderAll');
     }
     // engine.stage.frameLoop(2, this, setStates);

@@ -1,6 +1,6 @@
 import engine from '../engine';
 import IComponent from '../interfaces/IComponent';
-import { renderTree } from './createTree';
+import createTree from './createTree';
 import { eventTypes } from '../interfaces/IEvent';
 
 class Component {
@@ -86,11 +86,11 @@ class Component {
   componentDidMount() {}
   componentWillUnmount() {}
   addComponent(target: Component, name?: string) {
-    renderTree(target, this.node, name);
+    createTree(target, this.node, name);
   }
   render(): any {
     if (this.isDestroy) return;
-    if (this.props.fix) this.props.fix(this.node, this);
+    if (this.props.def) this.props.def(this.node, this);
     return this;
   }
 }
