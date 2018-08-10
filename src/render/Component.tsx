@@ -21,7 +21,6 @@ class Component {
       for (const k in this.props.on) {
         this.node.on(eventTypes[k], null, this.props.on[k], [
           this.node,
-          this,
           eventTypes[k],
         ]);
       }
@@ -30,7 +29,6 @@ class Component {
       for (const k in this.props.once) {
         this.node.once(eventTypes[k], null, this.props.once[k], [
           this.node,
-          this,
           eventTypes[k],
         ]);
       }
@@ -90,7 +88,7 @@ class Component {
   }
   render(): any {
     if (this.isDestroy) return;
-    if (this.props.def) this.props.def(this.node, this);
+    if (this.props.def) this.props.def(this.node);
     return this;
   }
 }

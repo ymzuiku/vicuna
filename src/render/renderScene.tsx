@@ -92,19 +92,13 @@ function initHorizontalScene(
 }
 
 function initDesktopScene(RootComponent, isShowStat?, versionFile?, isAntialias?, callback?) {
-  let iw = 1080;
-  let ih = 1920;
-  if (window) {
-    iw = window.innerWidth;
-    ih = (iw / 1080) * 1920;
-  }
   initCreator(
     RootComponent,
     isShowStat,
     versionFile,
     isAntialias,
-    iw,
-    ih,
+    window.innerWidth,
+    window.innerHeight,
     engine.Stage.SCALE_NOSCALE,
     engine.Stage.SCREEN_NONE,
     engine.Stage.FRAME_MOUSE,

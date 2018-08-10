@@ -21,6 +21,9 @@ class List extends Component {
   props: IList;
   constructor(props: IList) {
     super(props, engine.List);
+  }
+  render() {
+    super.render();
     this.node.array = this.props.data;
     this.node.repeatX = this.props.repeatX || 1;
     this.node.repeatY = this.props.repeatY || 6;
@@ -38,14 +41,13 @@ class List extends Component {
       this.node.selectEnable = true;
       this.node.selectHandler = new engine.Handler(null, this.props.onSelect, [
         this.node,
-        this,
       ]);
     }
     if (this.props.onScroll) {
       this.node.renderHandler = new engine.Handler(null, this.props.onScroll);
     }
-    console.log(this.node);
     this.node.itemRender = this.item;
+    return this;
   }
 }
 export default List;
