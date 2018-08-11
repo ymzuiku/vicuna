@@ -5,6 +5,8 @@ const strOf = Object.prototype.toString;
 
 interface IProps extends IComponent {
   def?: (node: engine.Image) => void;
+  url: string;
+  colorFilter?: Array<number>;
 }
 
 class Image extends engine.Image {
@@ -12,8 +14,20 @@ class Image extends engine.Image {
   constructor(props?: IProps) {
     super();
     this.props = props;
-    if (strOf.call(this.props.children[0]) !== '[object Object]') {
-      this.skin = this.props.children[0];
+    engine.loader.load(
+      this.props.url,
+      engine.Handler.create(this, this.onImageLoad),
+      undefined,
+      undefined,
+      1,
+      true,
+    );
+  }
+  onImageLoad() {
+    this.skin = this.props.children[0];
+    if (this.props.colorFilter) {
+      var colorFilter = new engine.ColorFilter(this.props.colorFilter);
+      this.filters = [colorFilter];
     }
   }
   componentWillMount() {}
@@ -23,7 +37,6 @@ class Image extends engine.Image {
   componentDidMount() {}
   componentWillUnmount() {}
   renderJSX(): any {}
-
 }
 
 export default Image;
