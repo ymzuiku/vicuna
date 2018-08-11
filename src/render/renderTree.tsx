@@ -2,8 +2,9 @@ import Component from './Component';
 import engine from '../engine';
 import memoize from '../utils/memoize';
 
+const strOf = Object.prototype.toString;
 
-const createTree = memoize(function(
+const renderTree = memoize(function(
   jsx: any,
   father: engine.Sprite,
   name?: string,
@@ -30,17 +31,18 @@ const lifeCycle = memoize(function(comp: Component) {
   if (comp.render) {
     comp.props = comp.componentWillReceiveProps(comp.props);
     const compTree = comp.render();
-    const len = comp.props.children.length;
-    if (len === 0) {
-      createTree(compTree, comp.node);
-    } else {
-      for (let i = 0; i < len; i++) {
-        createTree(comp.props.children[i], comp.node);
+    if (strOf.call(comp.props.children) === '[object Array]') {
+      const len = comp.props.children.length;
+      if (len === 0) {
+        renderTree(compTree, comp.node);
+      } else {
+        for (let i = 0; i < len; i++) {
+          renderTree(comp.props.children[i], comp.node);
+        }
       }
     }
     comp.componentDidMount();
   }
 }) as Function;
 
-
-export default createTree;
+export default renderTree;

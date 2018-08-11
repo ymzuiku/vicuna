@@ -3,7 +3,7 @@ import Component from '../render/Component';
 import IComponent from '../interfaces/IComponent';
 
 interface IView extends IComponent {
-  def?: (node: engine.Sprite, target: View) => void;
+  def?: (node: engine.Sprite) => void;
 }
 
 class View extends Component {

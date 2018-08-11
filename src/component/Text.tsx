@@ -3,7 +3,7 @@ import Component from '../render/Component';
 import IComponent from '../interfaces/IComponent';
 
 interface IText extends IComponent {
-  def?: (node: engine.Text, target: Text) => void;
+  def?: (node: engine.Text) => void;
 }
 
 class Text extends Component {

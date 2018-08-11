@@ -1,10 +1,10 @@
-import createTree from '../render/createTree';
+import renderTree from '../render/renderTree';
 import engine from '../engine';
 
 class ItemRender extends engine.Box {
   constructor() {
     super();
-    createTree(this.render(), this);
+    renderTree(this.render(), this);
   }
   render(): any {}
 }

@@ -1,5 +1,5 @@
 import engine from '../engine';
-import createTree from './createTree';
+import renderTree from './renderTree';
 import JSX from './JSX';
 
 function initCreator(
@@ -16,7 +16,7 @@ function initCreator(
 ) {
   function createCallback() {
     if (RootComponent) {
-      createTree(<RootComponent />, engine.stage);
+      renderTree(<RootComponent />, engine.stage);
     }
     if (callback) {
       callback();

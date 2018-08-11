@@ -1,6 +1,6 @@
 import engine from '../engine';
 import IComponent from '../interfaces/IComponent';
-import createTree from './createTree';
+import renderTree from './renderTree';
 import { eventTypes } from '../interfaces/IEvent';
 
 class Component {
@@ -84,7 +84,7 @@ class Component {
   componentDidMount() {}
   componentWillUnmount() {}
   addComponent(target: Component, name?: string) {
-    createTree(target, this.node, name);
+    renderTree(target, this.node, name);
   }
   render(): any {
     if (this.isDestroy) return;

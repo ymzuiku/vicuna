@@ -3,7 +3,7 @@ import Component from '../render/Component';
 import IComponent from '../interfaces/IComponent';
 
 interface IImage extends IComponent {
-  def?: (node: engine.Image, target: Image) => void;
+  def?: (node: engine.Image) => void;
 }
 
 class Image extends Component {

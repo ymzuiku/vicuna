@@ -3,7 +3,7 @@ import Component from '../render/Component';
 import IComponent from '../interfaces/IComponent';
 
 interface IInput extends IComponent {
-  def?: (node: engine.Input, target: Input) => void;
+  def?: (node: engine.Input) => void;
 }
 
 class Input extends Component {

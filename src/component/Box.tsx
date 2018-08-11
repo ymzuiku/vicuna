@@ -3,7 +3,7 @@ import Component from '../render/Component';
 import IComponent from '../interfaces/IComponent';
 
 interface IBox extends IComponent {
-  def?: (node: engine.Box, target: Box) => void;
+  def?: (node: engine.Box) => void;
 }
 
 class Box extends Component {
