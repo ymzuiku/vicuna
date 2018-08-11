@@ -1,20 +1,31 @@
 import engine from '../engine';
-import Component from '../render/Component';
 import IComponent from '../interfaces/IComponent';
+import initProps from '../render/initProps';
 
-interface IText extends IComponent {
+const strOf = Object.prototype.toString;
+
+interface IProps extends IComponent {
   def?: (node: engine.Text) => void;
 }
 
-class Text extends Component {
-  static defaultProps: IText;
-  node: engine.Text;
-  props: IText;
-  constructor(props: IText) {
-    super(props, engine.Text);
-    if (this.props.children[0] !== undefined) {
-      this.node.text = this.props.children[0];
+class Text extends engine.Text {
+  static defaultProps: IProps;
+  props: IProps;
+  constructor(props: IProps) {
+    super();
+    initProps(this, props, Text.defaultProps);
+    if (strOf.call(this.props.children[0]) !== '[object Object]') {
+      this.text = this.props.children[0];
     }
+  }
+  componentWillMount() {}
+  componentWillReceiveProps(nextProps) {
+    return nextProps;
+  }
+  componentDidMount() {}
+  componentWillUnmount() {}
+  renderJSX(): any {
+    if (this.props.def) this.props.def(this);
   }
 }
 

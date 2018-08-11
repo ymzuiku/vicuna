@@ -1,5 +1,5 @@
 import engine from '../engine';
-import renderTree from './renderTree';
+import lifeTree from './lifeTree';
 import JSX from './JSX';
 
 function initCreator(
@@ -16,7 +16,7 @@ function initCreator(
 ) {
   function createCallback() {
     if (RootComponent) {
-      renderTree(<RootComponent />, engine.stage);
+      lifeTree(<RootComponent />, engine.stage);
     }
     if (callback) {
       callback();
@@ -29,7 +29,6 @@ function initCreator(
   engine.stage.bgColor = '#f4f4f5';
   engine.stage.frameRate = frameRate;
   engine.stage.destroyChildren();
-  // Config.isAntialias = true
   if (isShowStat) {
     engine.Stat.show(30, 30);
   }

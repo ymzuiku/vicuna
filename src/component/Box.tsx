@@ -1,17 +1,28 @@
 import engine from '../engine';
-import Component from '../render/Component';
 import IComponent from '../interfaces/IComponent';
+import initProps from '../render/initProps';
 
-interface IBox extends IComponent {
+const strOf = Object.prototype.toString;
+
+interface IProps extends IComponent {
   def?: (node: engine.Box) => void;
 }
 
-class Box extends Component {
-  node: engine.Box;
-  props: IBox;
-  static defaultProps: IBox;
-  constructor(props: IBox) {
-    super(props);
+class Box extends engine.Box {
+  static defaultProps: IProps;
+  props: IProps;
+  constructor(props: IProps) {
+    super();
+    initProps(this, props, Box.defaultProps);
+  }
+  componentWillMount() {}
+  componentWillReceiveProps(nextProps) {
+    return nextProps;
+  }
+  componentDidMount() {}
+  componentWillUnmount() {}
+  renderJSX(): any {
+    if (this.props.def) this.props.def(this);
   }
 }
 

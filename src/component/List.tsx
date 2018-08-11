@@ -1,10 +1,12 @@
 import engine from '../engine';
 import Component from '../render/Component';
 import IComponent from '../interfaces/IComponent';
+import initProps from '../render/initProps';
 
-interface IList extends IComponent {
+const strOf = Object.prototype.toString;
+
+interface IProps extends IComponent {
   def?: (node: engine.List) => void;
-  item: any;
   data: Array<any>;
   repeatX?: number;
   repeatY?: number;
@@ -14,40 +16,47 @@ interface IList extends IComponent {
   onScroll?: (cell: engine.Box, index: number) => void;
 }
 
-class List extends Component {
-  static defaultProps: IList;
-  node: engine.List;
-  item: engine.Box;
-  props: IList;
-  constructor(props: IList) {
-    super(props, engine.List);
+class List extends engine.List {
+  static defaultProps: IProps;
+  props: IProps;
+  constructor(props: IProps) {
+    super();
+    initProps(this, props, List.defaultProps);
   }
-  render() {
-    super.render();
-    this.node.repeatX = this.props.repeatX || 1;
-    this.node.repeatY = this.props.repeatY || 6;
-    if (this.node.repeatX > 1) {
-      this.node.hScrollBarSkin = this.props.hScrollBarSkin || '';
+  componentWillMount() {}
+  componentWillReceiveProps(nextProps) {
+    return nextProps;
+  }
+  componentDidMount() {}
+  componentWillUnmount() {}
+  renderJSX(): any {
+    if (this.props.def) this.props.def(this);
+    this.repeatX = this.props.repeatX || 1;
+    this.repeatY = this.props.repeatY || 6;
+    if (this.repeatX > 1) {
+      this.hScrollBarSkin = this.props.hScrollBarSkin || '';
     } else {
-      this.node.hScrollBarSkin = this.props.hScrollBarSkin;
+      this.hScrollBarSkin = this.props.hScrollBarSkin;
     }
-    if (this.node.repeatY > 1) {
-      this.node.vScrollBarSkin = this.props.vScrollBarSkin || '';
+    if (this.repeatY > 1) {
+      this.vScrollBarSkin = this.props.vScrollBarSkin || '';
     } else {
-      this.node.vScrollBarSkin = this.props.vScrollBarSkin;
+      this.vScrollBarSkin = this.props.vScrollBarSkin;
     }
     if (this.props.onSelect) {
-      this.node.selectEnable = true;
-      this.node.selectHandler = new engine.Handler(null, this.props.onSelect, [
-        this.node,
+      this.selectEnable = true;
+      this.selectHandler = new engine.Handler(null, this.props.onSelect, [
+        this,
       ]);
     }
     if (this.props.onScroll) {
-      this.node.renderHandler = new engine.Handler(null, this.props.onScroll);
+      this.renderHandler = new engine.Handler(null, this.props.onScroll);
     }
-    this.node.itemRender = this.props.item;
-    this.node.array = this.props.data;
-    return this;
+    if (this.props.children[0]) {
+      this.itemRender = this.props.children[0];
+    }
+    this.array = this.props.data;
   }
 }
+
 export default List;

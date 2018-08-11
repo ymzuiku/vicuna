@@ -9,7 +9,7 @@ function JSX(fn, ...args) {
     childArray[i] = args[i + 1];
   }
   props.children = childArray;
-  return { fn, props };
+  return new fn(props)
 }
 
 try {

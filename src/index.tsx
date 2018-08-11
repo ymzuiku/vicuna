@@ -6,7 +6,7 @@ import renderScene from './render/renderScene';
 import layout from './layout';
 import JSX from './render/JSX';
 import ItemRender from './render/ItemRender';
-import renderTree from './render/renderTree';
+import lifeTree from './render/lifeTree';
 import Component from './render/Component';
 import PureComponent from './render/PureComponent';
 import * as nodeExtra from './nodeExtra';
@@ -22,7 +22,7 @@ import List from './component/List';
 export {
   ItemRender,
   nodeExtra,
-  renderTree,
+  lifeTree,
   engine,
   Component,
   PureComponent,

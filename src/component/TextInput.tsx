@@ -1,21 +1,32 @@
 import engine from '../engine';
-import Component from '../render/Component';
 import IComponent from '../interfaces/IComponent';
+import initProps from '../render/initProps';
 
-interface ITextInput extends IComponent {
+const strOf = Object.prototype.toString;
+
+interface IProps extends IComponent {
   def?: (node: engine.TextInput) => void;
 }
 
-class TextInput extends Component {
-  static defaultProps: ITextInput;
-  node: engine.TextInput;
-  props: ITextInput;
-  constructor(props: ITextInput) {
-    super(props, engine.TextInput);
-    if (this.props.children[0] !== undefined) {
-      this.node.prompt = this.props.children[0];
+class TextInput extends engine.TextInput {
+  static defaultProps: IProps;
+  props: IProps;
+  constructor(props: IProps) {
+    super();
+    initProps(this, props, TextInput.defaultProps);
+    if (strOf.call(this.props.children[0]) !== '[object Object]') {
+      this.prompt = this.props.children[0];
     }
+  }
+  componentWillMount() {}
+  componentWillReceiveProps(nextProps) {
+    return nextProps;
+  }
+  componentDidMount() {}
+  componentWillUnmount() {}
+  renderJSX(): any {
+    if (this.props.def) this.props.def(this);
   }
 }
 
-export default TextInput;
+export default Text;
