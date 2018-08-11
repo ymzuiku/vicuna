@@ -20,6 +20,7 @@ function initProps(target) {
         ]);
       }
     }
+    if (target.props.def) target.props.def(target);
   }
 }
 

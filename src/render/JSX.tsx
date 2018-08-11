@@ -1,19 +1,24 @@
-// fix jsx
 import lifeTree from './lifeTree';
+import initProps from './initProps';
 
 function JSX(fn, ...args) {
   const props = args[0] || {};
-  props._index = 0;
   const len = args.length - 1;
   const childArray = Array(len);
   for (let i = 0; i < len; i++) {
     childArray[i] = args[i + 1];
   }
   props.children = childArray;
-  const node = new fn(props)
-  if(node.renderJSX){
+  const node = new fn(props);
+  initProps(node);
+  if (node.renderJSX) {
     const subNode = node.renderJSX();
     lifeTree(subNode, node);
+  }
+  if (len > 0) {
+    for (let i = 0; i < len; i++) {
+      lifeTree(props.children[i], node);
+    }
   }
   return node;
 }

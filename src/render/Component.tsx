@@ -3,7 +3,8 @@ import IComponent from '../interfaces/IComponent';
 
 class Component extends engine.Sprite {
   props: IComponent;
-  constructor(props: IComponent) {
+  _isLifeTree: boolean;
+  constructor(props?: IComponent) {
     super();
     this.props = props;
   }
@@ -17,9 +18,7 @@ class Component extends engine.Sprite {
   }
   componentDidMount() {}
   componentWillUnmount() {}
-  renderJSX(): any {
-    if (this.props.def) this.props.def(this);
-  }
+  renderJSX(): any {}
 }
 
 export default Component;

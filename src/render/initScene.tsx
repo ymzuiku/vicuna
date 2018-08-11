@@ -1,7 +1,7 @@
 import engine from '../engine';
 import JSX from './JSX';
 
-function initCreator(
+function sceneOfCreator(
   RootComponent,
   isShowStat,
   versionFile,
@@ -43,14 +43,14 @@ function initCreator(
   }
 }
 
-function initVerticalScene(
+function sceneOfVertical(
   RootComponent,
   isShowStat?,
   versionFile?,
   isAntialias?,
   callback?,
 ) {
-  initCreator(
+  sceneOfCreator(
     RootComponent,
     isShowStat,
     versionFile,
@@ -64,14 +64,14 @@ function initVerticalScene(
   );
 }
 
-function initHorizontalScene(
+function sceneOfHorizontal(
   RootComponent,
   isShowStat?,
   versionFile?,
   isAntialias?,
   callback?,
 ) {
-  initCreator(
+  sceneOfCreator(
     RootComponent,
     isShowStat,
     versionFile,
@@ -85,14 +85,14 @@ function initHorizontalScene(
   );
 }
 
-function initDesktopScene(
+function sceneOfDesktop(
   RootComponent,
   isShowStat?,
   versionFile?,
   isAntialias?,
   callback?,
 ) {
-  initCreator(
+  sceneOfCreator(
     RootComponent,
     isShowStat,
     versionFile,
@@ -107,8 +107,8 @@ function initDesktopScene(
 }
 
 export default {
-  initCreator,
-  initVerticalScene,
-  initHorizontalScene,
-  initDesktopScene,
+  sceneOfCreator,
+  sceneOfVertical,
+  sceneOfHorizontal,
+  sceneOfDesktop,
 };

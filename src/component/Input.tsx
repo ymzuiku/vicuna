@@ -7,7 +7,7 @@ interface IProps extends IComponent {
 
 class Input extends engine.Input {
   props: IProps;
-  constructor(props: IProps) {
+  constructor(props?: IProps) {
     super();
     this.props = props;
     if (this.props.children[0] !== undefined) {
@@ -20,9 +20,8 @@ class Input extends engine.Input {
   }
   componentDidMount() {}
   componentWillUnmount() {}
-  renderJSX(): any {
-    if (this.props.def) this.props.def(this);
-  }
+  renderJSX(): any {}
+
 }
 
 export default Input;

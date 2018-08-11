@@ -7,7 +7,7 @@ interface IProps extends IComponent {
 
 class Box extends engine.Box {
   props: IProps;
-  constructor(props: IProps) {
+  constructor(props?: IProps) {
     super();
     this.props = props;
   }
@@ -17,9 +17,8 @@ class Box extends engine.Box {
   }
   componentDidMount() {}
   componentWillUnmount() {}
-  renderJSX(): any {
-    if (this.props.def) this.props.def(this);
-  }
+  renderJSX(): any {}
+
 }
 
 export default Box;

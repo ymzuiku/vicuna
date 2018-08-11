@@ -9,7 +9,7 @@ interface IProps extends IComponent {
 
 class Image extends engine.Image {
   props: IProps;
-  constructor(props: IProps) {
+  constructor(props?: IProps) {
     super();
     this.props = props;
     if (strOf.call(this.props.children[0]) !== '[object Object]') {
@@ -22,9 +22,8 @@ class Image extends engine.Image {
   }
   componentDidMount() {}
   componentWillUnmount() {}
-  renderJSX(): any {
-    if (this.props.def) this.props.def(this);
-  }
+  renderJSX(): any {}
+
 }
 
 export default Image;
