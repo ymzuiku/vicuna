@@ -2,9 +2,8 @@ import Component from './Component';
 import engine from '../engine';
 import memoize from '../utils/memoize';
 
-export let frameLoopStateList = [];
 
-export const renderTree = memoize(function(
+const createTree = memoize(function(
   jsx: any,
   father: engine.Sprite,
   name?: string,
@@ -26,21 +25,22 @@ export const renderTree = memoize(function(
   }
 }) as Function;
 
-export const lifeCycle = memoize(function(comp: Component) {
+const lifeCycle = memoize(function(comp: Component) {
   if (comp.isDestroy === true) return;
   if (comp.render) {
     comp.props = comp.componentWillReceiveProps(comp.props);
     const compTree = comp.render();
     const len = comp.props.children.length;
     if (len === 0) {
-      renderTree(compTree, comp.node);
+      createTree(compTree, comp.node);
     } else {
       for (let i = 0; i < len; i++) {
-        renderTree(comp.props.children[i], comp.node);
+        createTree(comp.props.children[i], comp.node);
       }
     }
     comp.componentDidMount();
   }
 }) as Function;
 
-export function updateChildren() {}
+
+export default createTree;

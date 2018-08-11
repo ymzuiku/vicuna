@@ -7,7 +7,6 @@ function JSX(fn, ...args) {
   const childArray = Array(len);
   for (let i = 0; i < len; i++) {
     childArray[i] = args[i + 1];
-    childArray[i]._index = i;
   }
   props.children = childArray;
   return { fn, props };

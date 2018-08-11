@@ -1,11 +1,9 @@
-import Component from '../render/Component';
 import engine from '../engine';
-import IDiff from '../interfaces/IDiff';
-import ITextGL from '../interfaces/IText';
+import Component from '../render/Component';
+import IComponent from '../interfaces/IComponent';
 
-interface IText extends IDiff {
-  bgColor?: string;
-  node?: ITextGL;
+interface IText extends IComponent {
+  def?: (node: engine.Text, target: Text) => void;
 }
 
 class Text extends Component {
@@ -14,6 +12,9 @@ class Text extends Component {
   props: IText;
   constructor(props: IText) {
     super(props, engine.Text);
+    if (this.props.children[0] !== undefined) {
+      this.node.text = this.props.children[0];
+    }
   }
 }
 

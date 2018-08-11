@@ -1,12 +1,7 @@
-import typeCheck from '../utils/typeCheck';
 import engine from '../engine';
-import IDiff from '../interfaces/IDiff';
-import ISprite from '../interfaces/ISprite';
-import { renderTree } from './createTree';
-
-export interface IComponent extends IDiff {
-  node?: ISprite;
-}
+import IComponent from '../interfaces/IComponent';
+import createTree from './createTree';
+import { eventTypes } from '../interfaces/IEvent';
 
 class Component {
   static defaultProps: IComponent;
@@ -20,7 +15,24 @@ class Component {
   constructor(props: IComponent, type: any = engine.Sprite) {
     this.props = { ...Component.defaultProps, ...props };
     this.node = new type();
+    this.node.name = this.props.name;
     if (this.props.ref) this.props.ref(this);
+    if (this.props.on) {
+      for (const k in this.props.on) {
+        this.node.on(eventTypes[k], null, this.props.on[k], [
+          this.node,
+          eventTypes[k],
+        ]);
+      }
+    }
+    if (this.props.once) {
+      for (const k in this.props.once) {
+        this.node.once(eventTypes[k], null, this.props.once[k], [
+          this.node,
+          eventTypes[k],
+        ]);
+      }
+    }
   }
   frameOnce(loopFn) {
     engine.timer.frameOnce(2, null, loopFn);
@@ -72,16 +84,11 @@ class Component {
   componentDidMount() {}
   componentWillUnmount() {}
   addComponent(target: Component, name?: string) {
-    renderTree(target, this.node, name);
+    createTree(target, this.node, name);
   }
   render(): any {
     if (this.isDestroy) return;
-    const { children, node } = this.props;
-    if (node) {
-      for (let k in node) {
-        this.node[k] = node[k];
-      }
-    }
+    if (this.props.def) this.props.def(this.node);
     return this;
   }
 }

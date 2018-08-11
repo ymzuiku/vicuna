@@ -32,23 +32,23 @@ export default interface IText extends ISprite {
    * @param	name		位图字体的名称。
    * @param	bitmapFont	位图字体文件。
    */
-  registerBitmapFont?(name: string, bitmapFont: engine.BitmapFont): void;
+  // registerBitmapFont?(name: string, bitmapFont: engine.BitmapFont): void;
   /**
    * 移除注册的位图字体文件。
    * @param	name		位图字体的名称。
    * @param	destroy		是否销毁指定的字体文件。
    */
-  unregisterBitmapFont?(name: string, destroy?: boolean): void;
+  // unregisterBitmapFont?(name: string, destroy?: boolean): void;
   /**
    * 设置文字排版模式为右到左。
    */
-  setTextRightToLeft?(): void;
+  // setTextRightToLeft?(): void;
   /**@inheritDoc */
-  destroy?(destroyChild?: boolean): void;
+  // destroy?(destroyChild?: boolean): void;
   /**
    * @inheritDoc
    */
-  getGraphicBounds?(realSize?: boolean): engine.Rectangle;
+  // getGraphicBounds?(realSize?: boolean): engine.Rectangle;
   /**
    * @inheritDoc
    */
@@ -81,19 +81,19 @@ export default interface IText extends ISprite {
    * @param	text 文本内容。
    * @param	...args 文本替换参数。
    */
-  lang?(
-    text: string,
-    arg1?: any,
-    arg2?: any,
-    arg3?: any,
-    arg4?: any,
-    arg5?: any,
-    arg6?: any,
-    arg7?: any,
-    arg8?: any,
-    arg9?: any,
-    arg10?: any,
-  ): void;
+  // lang?(
+  //   text: string,
+  //   arg1?: any,
+  //   arg2?: any,
+  //   arg3?: any,
+  //   arg4?: any,
+  //   arg5?: any,
+  //   arg6?: any,
+  //   arg7?: any,
+  //   arg8?: any,
+  //   arg9?: any,
+  //   arg10?: any,
+  // ): void;
   /**
    * <p>文本的字体名称，以字符串形式表示。</p>
    * <p>默认值为："Arial"，可以通过Font.defaultFont设置默认字体。</p>
@@ -175,20 +175,20 @@ export default interface IText extends ISprite {
    * <p>排版文本。</p>
    * <p>进行宽高计算，渲染、重绘文本。</p>
    */
-  typeset?(): void;
+  // typeset?(): void;
   /**
    * <p>快速更改显示文本。不进行排版计算，效率较高。</p>
    * <p>如果只更改文字内容，不更改文字样式，建议使用此接口，能提高效率。</p>
    * @param text 文本内容。
    */
-  changeText?(text: string): void;
+  // changeText?(text: string): void;
   /**
    * 返回字符在本类实例的父坐标系下的坐标。
    * @param charIndex	索引位置。
    * @param out		（可选）输出的Point引用。
    * @return Point 字符在本类实例的父坐标系下的坐标。如果out参数不为空，则将结果赋值给指定的Point对象，否则创建一个新的Point对象返回。建议使用Point.TEMP作为out参数，可以省去Point对象创建和垃圾回收的开销，尤其是在需要频繁执行的逻辑中，比如帧循环和MOUSE_MOVE事件回调函数里面。
    */
-  getCharPoint?(charIndex: number, out?: engine.Point): engine.Point;
+  // getCharPoint?(charIndex: number, out?: engine.Point): engine.Point;
   /**
    * 获取横向滚动量。
    */
@@ -220,5 +220,5 @@ export default interface IText extends ISprite {
    * @param	font	对font进行支持测试
    * @return	true表示系统支持
    */
-  supportFont?(font: string): boolean;
+  // supportFont?(font: string): boolean;
 }
