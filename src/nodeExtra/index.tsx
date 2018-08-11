@@ -1,3 +1,4 @@
-import { drawBox, drawBoxOfRadius } from './addBgColor';
+import { drawRect, drawRectOfRadius } from './addBgColor';
 import apply from './apply';
-export { drawBox, drawBoxOfRadius, apply };
+import getNodeTree from './getNodeTree';
+export { drawRect, drawRectOfRadius, apply, getNodeTree };

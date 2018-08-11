@@ -10,7 +10,7 @@ function drawRadius(w, h, r) {
   ];
 }
 
-export function drawBox(
+export function drawRect(
   sprite: engine.Sprite,
   bgColor: string,
   lineColor?: string,
@@ -27,7 +27,7 @@ export function drawBox(
   );
 }
 
-export function drawBoxOfRadius(
+export function drawRectOfRadius(
   sprite: engine.Sprite,
   bgColor: string,
   lineColor?: string,

@@ -11,10 +11,15 @@ function JSX(fn, ...args) {
   props.children = childArray;
   const node = new fn(props);
   initProps(node);
+  if (node.componentWillMount) node.componentWillMount();
+  if (node.componentWillReceiveProps) {
+    node.props = node.componentWillReceiveProps(node.props);
+  }
   if (node.renderJSX) {
     const subNode = node.renderJSX();
     lifeTree(subNode, node);
   }
+  if (node.componentDidMount) node.componentDidMount();
   if (len > 0) {
     for (let i = 0; i < len; i++) {
       lifeTree(props.children[i], node);

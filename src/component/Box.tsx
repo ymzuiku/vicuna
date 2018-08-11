@@ -18,7 +18,6 @@ class Box extends engine.Box {
   componentDidMount() {}
   componentWillUnmount() {}
   renderJSX(): any {}
-
 }
 
 export default Box;

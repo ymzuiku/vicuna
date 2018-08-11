@@ -10,11 +10,11 @@ const lifeTree = memoize(function(comp: Component, father: engine.Sprite) {
     comp._isLifeTree = true;
     father.addChild(comp);
     initProps(comp);
+    if (comp.componentWillMount) comp.componentWillMount();
+    if (comp.componentWillReceiveProps) {
+      comp.props = comp.componentWillReceiveProps(comp.props);
+    }
     if (comp.renderJSX) {
-      if (comp.componentWillMount) comp.componentWillMount();
-      if (comp.componentWillReceiveProps) {
-        comp.props = comp.componentWillReceiveProps(comp.props);
-      }
       const compTree = comp.renderJSX();
       if (compTree) {
         comp.addChild(compTree);
@@ -32,15 +32,15 @@ const lifeTree = memoize(function(comp: Component, father: engine.Sprite) {
           }
         }
       }
-      if (comp.componentDidMount) comp.componentDidMount();
     } else {
-      const len = comp.props.children.length;
+      const len = comp.props && comp.props.children.length;
       if (len > 0) {
         for (let i = 0; i < len; i++) {
           lifeTree(comp.props.children[i], comp);
         }
       }
     }
+    if (comp.componentDidMount) comp.componentDidMount();
   }
 }) as Function;
 
