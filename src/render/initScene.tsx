@@ -1,5 +1,4 @@
 import engine from '../engine';
-import lifeTree from './lifeTree';
 import JSX from './JSX';
 
 function initCreator(
@@ -16,13 +15,13 @@ function initCreator(
 ) {
   function createCallback() {
     if (RootComponent) {
-      lifeTree(<RootComponent />, engine.stage);
+      engine.stage.addChild(<RootComponent />)
     }
     if (callback) {
       callback();
     }
   }
-  Config.isAntialias = isAntialias === undefined? true : isAntialias;
+  Config.isAntialias = isAntialias === undefined ? true : isAntialias;
   engine.init(iw, ih, engine.WebGL);
   engine.stage.scaleMode = scaleMode;
   engine.stage.screenMode = screenMode;
@@ -86,7 +85,13 @@ function initHorizontalScene(
   );
 }
 
-function initDesktopScene(RootComponent, isShowStat?, versionFile?, isAntialias?, callback?) {
+function initDesktopScene(
+  RootComponent,
+  isShowStat?,
+  versionFile?,
+  isAntialias?,
+  callback?,
+) {
   initCreator(
     RootComponent,
     isShowStat,

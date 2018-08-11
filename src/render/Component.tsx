@@ -1,17 +1,19 @@
 import engine from '../engine';
 import IComponent from '../interfaces/IComponent';
-import initProps from './initProps';
 
 class Component extends engine.Sprite {
-  static defaultProps: IComponent;
   props: IComponent;
   constructor(props: IComponent) {
     super();
-    initProps(this, props, Component.defaultProps);
+    this.props = props;
   }
   componentWillMount() {}
   componentWillReceiveProps(nextProps) {
     return nextProps;
+  }
+  destroy() {
+    this.componentWillUnmount();
+    super.destroy();
   }
   componentDidMount() {}
   componentWillUnmount() {}

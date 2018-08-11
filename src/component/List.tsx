@@ -1,12 +1,9 @@
 import engine from '../engine';
-import Component from '../render/Component';
 import IComponent from '../interfaces/IComponent';
-import initProps from '../render/initProps';
-
-const strOf = Object.prototype.toString;
 
 interface IProps extends IComponent {
   def?: (node: engine.List) => void;
+  item: any;
   data: Array<any>;
   repeatX?: number;
   repeatY?: number;
@@ -17,11 +14,10 @@ interface IProps extends IComponent {
 }
 
 class List extends engine.List {
-  static defaultProps: IProps;
   props: IProps;
   constructor(props: IProps) {
     super();
-    initProps(this, props, List.defaultProps);
+    this.props = props;
   }
   componentWillMount() {}
   componentWillReceiveProps(nextProps) {
@@ -52,9 +48,7 @@ class List extends engine.List {
     if (this.props.onScroll) {
       this.renderHandler = new engine.Handler(null, this.props.onScroll);
     }
-    if (this.props.children[0]) {
-      this.itemRender = this.props.children[0];
-    }
+    this.itemRender = this.props.item;
     this.array = this.props.data;
   }
 }

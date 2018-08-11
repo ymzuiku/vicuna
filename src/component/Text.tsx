@@ -1,6 +1,5 @@
 import engine from '../engine';
 import IComponent from '../interfaces/IComponent';
-import initProps from '../render/initProps';
 
 const strOf = Object.prototype.toString;
 
@@ -9,11 +8,10 @@ interface IProps extends IComponent {
 }
 
 class Text extends engine.Text {
-  static defaultProps: IProps;
   props: IProps;
   constructor(props: IProps) {
     super();
-    initProps(this, props, Text.defaultProps);
+    this.props = props;
     if (strOf.call(this.props.children[0]) !== '[object Object]') {
       this.text = this.props.children[0];
     }

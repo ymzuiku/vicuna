@@ -1,17 +1,15 @@
 import engine from '../engine';
 import IComponent from '../interfaces/IComponent';
-import initProps from '../render/initProps';
 
 interface IProps extends IComponent {
   def?: (node: engine.Input) => void;
 }
 
 class Input extends engine.Input {
-  static defaultProps: IProps;
   props: IProps;
   constructor(props: IProps) {
     super();
-    initProps(this, props, Input.defaultProps);
+    this.props = props;
     if (this.props.children[0] !== undefined) {
       this.text = this.props.children[0];
     }
@@ -27,4 +25,4 @@ class Input extends engine.Input {
   }
 }
 
-export default Text;
+export default Input;

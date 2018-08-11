@@ -2,13 +2,11 @@ import * as utils from './utils';
 utils.fullPage();
 
 import engine from './engine';
-import renderScene from './render/renderScene';
+import initScene from './render/initScene';
 import layout from './layout';
 import JSX from './render/JSX';
-import ItemRender from './render/ItemRender';
 import lifeTree from './render/lifeTree';
 import Component from './render/Component';
-import PureComponent from './render/PureComponent';
 import * as nodeExtra from './nodeExtra';
 
 import View from './component/View';
@@ -20,13 +18,11 @@ import Box from './component/Box';
 import List from './component/List';
 
 export {
-  ItemRender,
   nodeExtra,
   lifeTree,
   engine,
   Component,
-  PureComponent,
-  renderScene,
+  initScene,
   utils,
   layout,
   JSX,

@@ -1,4 +1,5 @@
 // fix jsx
+import lifeTree from './lifeTree';
 
 function JSX(fn, ...args) {
   const props = args[0] || {};
@@ -9,7 +10,12 @@ function JSX(fn, ...args) {
     childArray[i] = args[i + 1];
   }
   props.children = childArray;
-  return new fn(props)
+  const node = new fn(props)
+  if(node.renderJSX){
+    const subNode = node.renderJSX();
+    lifeTree(subNode, node);
+  }
+  return node;
 }
 
 try {
