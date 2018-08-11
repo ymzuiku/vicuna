@@ -17,11 +17,8 @@ function initCreator(
 ) {
   function createCallback() {
     if (RootComponent) {
-      console.time('renderAll');
       renderTree(<RootComponent />, engine.stage);
-      console.timeEnd('renderAll');
     }
-    // engine.stage.frameLoop(2, this, setStates);
     if (callback) {
       callback();
     }
