@@ -2,7 +2,7 @@ import engine from '../engine';
 import IComponent from '../interfaces/IComponent';
 
 interface IProps extends IComponent {
-  def?: (node: engine.Input) => void;
+  ref?: (node: engine.Input) => void;
 }
 
 export default class extends engine.Input {

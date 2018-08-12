@@ -1,5 +1,5 @@
 import engine from '../engine';
-import Component from '../render/Component';
+import Component from '../component/Component';
 
 export interface IEvent {
   mouseDown?: (node: engine.Sprite, target: Component, type: string) => any;

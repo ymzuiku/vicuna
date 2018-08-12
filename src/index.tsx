@@ -4,10 +4,10 @@ utils.fullPage();
 import engine from './engine';
 import CreateScene from './render/CreateScene';
 import JSX from './render/JSX';
-import Component from './render/Component';
 import * as extra from './nodeExtra';
 
-import View from './component/View';
+import Component from './component/Component';
+import Sprite from './component/Sprite';
 import Text from './component/Text';
 import TextInput from './component/TextInput';
 import TextArea from './component/TextArea';
@@ -32,7 +32,7 @@ export {
   CreateScene,
   utils,
   JSX,
-  View,
+  Sprite,
   Text,
   TextInput,
   TextArea,

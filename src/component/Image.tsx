@@ -4,7 +4,7 @@ import IComponent from '../interfaces/IComponent';
 const strOf = Object.prototype.toString;
 
 interface IProps extends IComponent {
-  def?: (node: engine.Image) => void;
+  ref?: (node: engine.Image) => void;
   url: string;
   colorFilter?: Array<number>;
 }
@@ -24,7 +24,7 @@ export default class extends engine.Image {
     );
   }
   onImageLoad() {
-    this.skin = this.props.children[0];
+    this.skin = this.prop.url;
     if (this.props.colorFilter) {
       var colorFilter = new engine.ColorFilter(this.props.colorFilter);
       this.filters = [colorFilter];

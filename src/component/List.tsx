@@ -2,7 +2,7 @@ import engine from '../engine';
 import IComponent from '../interfaces/IComponent';
 
 interface IProps extends IComponent {
-  def?: (node: engine.List) => void;
+  ref?: (node: engine.List) => void;
   item: any;
   data: Array<any>;
   repeatX?: number;

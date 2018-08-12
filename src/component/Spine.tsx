@@ -2,7 +2,7 @@ import engine from '../engine';
 import IComponent from '../interfaces/IComponent';
 
 interface IProps extends IComponent {
-  def?: (node: engine.Skeleton) => void;
+  ref?: (node: engine.Sprite) => void;
   urlOfSk: string;
   onComplete?: Function;
   onError?: Function;

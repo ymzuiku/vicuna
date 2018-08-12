@@ -2,7 +2,11 @@ import engine from '../engine';
 import IComponent from '../interfaces/IComponent';
 
 interface IProps extends IComponent {
-  def?: (node: engine.Dialog) => void;
+  ref?: (node: engine.Box) => void;
+  bottom?:number;
+  top?:number;
+  left?:number;
+  right?:number;
 }
 
 export default class extends engine.Box {
@@ -10,6 +14,10 @@ export default class extends engine.Box {
   constructor(props?: IProps) {
     super();
     this.props = props;
+    this.bottom = this.props.bottom || 0;
+    this.top = this.props.top || 0;
+    this.left = this.props.left || 0;
+    this.right = this.props.right || 0;
   }
   componentWillMount() {}
   componentWillReceiveProps(nextProps) {

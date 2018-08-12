@@ -1,10 +1,14 @@
 import engine from '../engine';
 import IComponent from '../interfaces/IComponent';
 
-export default class extends engine.Sprite {
-  props: IComponent;
+interface IProps extends IComponent {
+  ref?: (node: engine.Component) => void;
+}
+
+export default class extends engine.Component {
+  props: IProps;
   _isLifeTree: boolean;
-  constructor(props?: IComponent) {
+  constructor(props?: IProps) {
     super();
     this.props = props;
   }

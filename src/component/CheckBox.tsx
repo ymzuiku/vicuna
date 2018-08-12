@@ -4,7 +4,7 @@ import IComponent from '../interfaces/IComponent';
 const strOf = Object.prototype.toString;
 
 interface IProps extends IComponent {
-  def?: (node: engine.CheckBox) => void;
+  ref?: (node: engine.CheckBox) => void;
   onChange?: (target: engine.CheckBox) => void;
 }
 

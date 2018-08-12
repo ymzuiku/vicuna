@@ -4,7 +4,7 @@ import IComponent from '../interfaces/IComponent';
 const strOf = Object.prototype.toString;
 
 interface IProps extends IComponent {
-  def?: (node: engine.Slider) => void;
+  ref?: (node: engine.Slider) => void;
   onChange?: (value: number) => void;
 }
 

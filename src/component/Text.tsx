@@ -4,7 +4,7 @@ import IComponent from '../interfaces/IComponent';
 const strOf = Object.prototype.toString;
 
 interface IProps extends IComponent {
-  def?: (node: engine.Text) => void;
+  ref?: (node: engine.Text) => void;
 }
 
 export default class extends engine.Text {
@@ -12,7 +12,8 @@ export default class extends engine.Text {
   constructor(props?: IProps) {
     super();
     this.props = props;
-    if (strOf.call(this.props.children[0]) !== '[object Object]') {
+    const childrenZeroType = strOf.call(this.props.children[0])
+    if (childrenZeroType === '[object String]' || childrenZeroType === '[object Number]') {
       this.text = this.props.children[0];
     }
   }

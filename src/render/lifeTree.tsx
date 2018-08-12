@@ -1,4 +1,4 @@
-import Component from './Component';
+import Component from '../component/Component';
 import engine from '../engine';
 import memoize from '../utils/memoize';
 import initProps from './initProps';

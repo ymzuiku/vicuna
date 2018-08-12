@@ -4,7 +4,7 @@ import IComponent from '../interfaces/IComponent';
 const strOf = Object.prototype.toString;
 
 interface IProps extends IComponent {
-  def?: (node: engine.Button) => void;
+  ref?: (node: engine.Button) => void;
 }
 
 export default class extends engine.Button {

@@ -2,7 +2,7 @@ import engine from '../engine';
 import IComponent from '../interfaces/IComponent';
 
 interface IProps extends IComponent {
-  def?: (node: engine.Text) => void;
+  ref?: (node: engine.Animation) => void;
   urlOfJson: string;
   interval?: number;
   index?: number;
