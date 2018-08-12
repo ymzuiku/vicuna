@@ -2,17 +2,14 @@ import engine from '../engine';
 import IComponent from '../interfaces/IComponent';
 
 interface IProps extends IComponent {
-  def?: (node: engine.Input) => void;
+  def?: (node: engine.Dialog) => void;
 }
 
-export default class extends engine.Input {
+export default class extends engine.HBox {
   props: IProps;
   constructor(props?: IProps) {
     super();
     this.props = props;
-    if (this.props.children[0] !== undefined) {
-      this.text = this.props.children[0];
-    }
   }
   componentWillMount() {}
   componentWillReceiveProps(nextProps) {

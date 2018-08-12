@@ -1,13 +1,11 @@
 import engine from '../engine';
 import IComponent from '../interfaces/IComponent';
 
-const strOf = Object.prototype.toString;
-
 interface IProps extends IComponent {
   def?: (node: engine.Dialog) => void;
 }
 
-class Text extends engine.Dialog {
+export default class extends engine.Dialog {
   props: IProps;
   constructor(props?: IProps) {
     super();
@@ -21,5 +19,3 @@ class Text extends engine.Dialog {
   componentWillUnmount() {}
   renderJSX(): any {}
 }
-
-export default Text;

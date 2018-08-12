@@ -7,7 +7,7 @@ interface IProps extends IComponent {
   def?: (node: engine.LayoutBox) => void;
 }
 
-class Text extends engine.LayoutBox {
+export default class extends engine.LayoutBox {
   props: IProps;
   constructor(props?: IProps) {
     super();
@@ -21,5 +21,3 @@ class Text extends engine.LayoutBox {
   componentWillUnmount() {}
   renderJSX(): any {}
 }
-
-export default Text;

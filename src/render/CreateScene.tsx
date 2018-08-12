@@ -1,8 +1,6 @@
 import engine from '../engine';
 import JSX from './JSX';
 
-const strOf = Object.prototype.toString;
-
 interface IScreenOfCreator {
   RootComponent?: any;
   isShowStat?: boolean;
@@ -37,23 +35,11 @@ function CreateScene(props: IScreenOfCreator) {
     frameRate,
     initend,
     type,
-    // isShowDebugPanel,
-    // isShowDebugTool,
   } = props;
   function createCallback() {
     if (RootComponent) {
       engine.stage.addChild(<RootComponent />);
     }
-    // if (isShowDebugPanel) {
-    //   import('../../exp/debugtool').then(() => {
-    //     engine.DebugPanel.init();
-    //   });
-    // }
-    // if (isShowDebugTool) {
-    //   import('../../exp/debugtool').then(() => {
-    //     engine.DebugTool.init();
-    //   });
-    // }
     if (initend) {
       initend();
     }

@@ -8,7 +8,7 @@ interface IProps extends IComponent {
   index?: number;
 }
 
-class Animation extends engine.Animation {
+export default class extends engine.Animation {
   props: IProps;
   constructor(props?: IProps) {
     super();
@@ -35,5 +35,3 @@ class Animation extends engine.Animation {
   componentWillUnmount() {}
   renderJSX(): any {}
 }
-
-export default Animation;

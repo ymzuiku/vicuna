@@ -7,7 +7,7 @@ interface IProps extends IComponent {
   def?: (node: engine.Button) => void;
 }
 
-class Text extends engine.Button {
+export default class extends engine.Button {
   props: IProps;
   constructor(props?: IProps) {
     super();
@@ -22,5 +22,3 @@ class Text extends engine.Button {
   renderJSX(): any {
   }
 }
-
-export default Text;

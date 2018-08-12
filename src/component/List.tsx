@@ -13,7 +13,7 @@ interface IProps extends IComponent {
   onScroll?: (cell: engine.Box, index: number) => void;
 }
 
-class List extends engine.List {
+export default class extends engine.List {
   props: IProps;
   constructor(props?: IProps) {
     super();
@@ -53,5 +53,3 @@ class List extends engine.List {
     this.array = this.props.data;
   }
 }
-
-export default List;

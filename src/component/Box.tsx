@@ -2,10 +2,10 @@ import engine from '../engine';
 import IComponent from '../interfaces/IComponent';
 
 interface IProps extends IComponent {
-  def?: (node: engine.Box) => void;
+  def?: (node: engine.Dialog) => void;
 }
 
-class Box extends engine.Box {
+export default class extends engine.Box {
   props: IProps;
   constructor(props?: IProps) {
     super();
@@ -18,6 +18,5 @@ class Box extends engine.Box {
   componentDidMount() {}
   componentWillUnmount() {}
   renderJSX(): any {}
-}
+}210
 
-export default Box;

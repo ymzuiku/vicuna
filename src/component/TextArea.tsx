@@ -7,7 +7,7 @@ interface IProps extends IComponent {
   def?: (node: engine.TextArea) => void;
 }
 
-class TextInput extends engine.TextArea {
+export default class extends engine.TextArea {
   props: IProps;
   constructor(props?: IProps) {
     super();
@@ -24,5 +24,3 @@ class TextInput extends engine.TextArea {
   componentWillUnmount() {}
   renderJSX(): any {}
 }
-
-export default TextInput;

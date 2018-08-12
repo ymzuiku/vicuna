@@ -14,6 +14,8 @@ import TextArea from './component/TextArea';
 import Input from './component/Input';
 import Image from './component/Image';
 import Box from './component/Box';
+import HBox from './component/HBox';
+import VBox from './component/VBox';
 import List from './component/List';
 import Button from './component/Button';
 import CheckBox from './component/CheckBox';
@@ -37,6 +39,8 @@ export {
   Input,
   Image,
   Box,
+  HBox,
+  VBox,
   List,
   Button,
   CheckBox,

@@ -8,7 +8,7 @@ interface IProps extends IComponent {
   onChange?: (value: number) => void;
 }
 
-class Text extends engine.Slider {
+export default class extends engine.Slider {
   props: IProps;
   constructor(props?: IProps) {
     super();
@@ -27,4 +27,3 @@ class Text extends engine.Slider {
   }
 }
 
-export default Text;

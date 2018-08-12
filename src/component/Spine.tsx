@@ -9,7 +9,7 @@ interface IProps extends IComponent {
 }
 
 
-class Spine extends engine.Sprite {
+export default class extends engine.Sprite {
   props: IProps;
   templet: engine.Templet;
   skeleton: engine.Skeleton;
@@ -35,5 +35,3 @@ class Spine extends engine.Sprite {
   componentWillUnmount() {}
   renderJSX(): any {}
 }
-
-export default Spine;

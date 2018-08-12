@@ -9,7 +9,7 @@ interface IProps extends IComponent {
   colorFilter?: Array<number>;
 }
 
-class Image extends engine.Image {
+export default class extends engine.Image {
   props: IProps;
   constructor(props?: IProps) {
     super();

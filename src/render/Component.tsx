@@ -1,7 +1,7 @@
 import engine from '../engine';
 import IComponent from '../interfaces/IComponent';
 
-class Component extends engine.Sprite {
+export default class extends engine.Sprite {
   props: IComponent;
   _isLifeTree: boolean;
   constructor(props?: IComponent) {
@@ -20,5 +20,3 @@ class Component extends engine.Sprite {
   componentWillUnmount() {}
   renderJSX(): any {}
 }
-
-export default Component;

@@ -8,7 +8,7 @@ interface IProps extends IComponent {
   onChange?: (target: engine.CheckBox) => void;
 }
 
-class Text extends engine.CheckBox {
+export default class Text extends engine.CheckBox {
   props: IProps;
   constructor(props?: IProps) {
     super();
@@ -27,4 +27,3 @@ class Text extends engine.CheckBox {
   }
 }
 
-export default Text;

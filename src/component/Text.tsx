@@ -7,7 +7,7 @@ interface IProps extends IComponent {
   def?: (node: engine.Text) => void;
 }
 
-class Text extends engine.Text {
+export default class extends engine.Text {
   props: IProps;
   constructor(props?: IProps) {
     super();
@@ -24,5 +24,3 @@ class Text extends engine.Text {
   componentWillUnmount() {}
   renderJSX(): any {}
 }
-
-export default Text;
